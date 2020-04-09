@@ -1,5 +1,4 @@
 language: ruby
-script: bundle exec rails test
 install: bundle install
 before_install:
   - cp config/database.yml.travis config/database.yml
@@ -8,3 +7,5 @@ addons:
   postgresql: "10"
 rvm:
   - 2.6.3
+script: bundle exec rails test
+script: bundle exec srb tc
