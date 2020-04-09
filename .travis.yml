@@ -3,15 +3,12 @@ script: bundle exec rails test
 install: bundle install
 before_install:
   - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres -p 5432 -h 127.0.0.1
 addons:
-  postgresql: "10.6"
+  postgresql: "10"
   apt:
     packages:
     - postgresql-10
     - postgresql-client-10
-env:
-  global:
-  - PGPORT=5432
 rvm:
   - 2.6.3
