@@ -1,0 +1,5 @@
+{
+  "name": "test_private_rails",
+  "private": true,
+  "dependencies": {}
+}
