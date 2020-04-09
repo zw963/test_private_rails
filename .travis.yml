@@ -1,5 +1,10 @@
 language: ruby
 script: bundle exec rails test
 install: bundle install
+before_install:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+addons:
+  postgresql: "10.6"
 rvm:
   - 2.6.3
