@@ -1,4 +1,6 @@
 language: ruby
+before_install:
+  - elasticsearch-plugin install analysis-kuromoji
 install: bundle install
 before_install:
   - cp config/database.yml.travis config/database.yml
