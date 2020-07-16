@@ -27,10 +27,12 @@ jobs:
         with:
           postgresql version: '11'
           postgresql init scripts: test/sql
+        env:
+          AIRHOST_DB_HOST: postgres
       - name: Check Postgres running
         run: |
           sleep 5
-          psql -U postgres -d postgres -h localhost -c "SELECT version()"
+          psql -U postgres -d postgres -h postgres -c "SELECT version()"
       - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing ruby
