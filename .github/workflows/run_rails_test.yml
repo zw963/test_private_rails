@@ -1,3 +1,4 @@
+
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
@@ -13,7 +14,8 @@ on:
       - master
       - production
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   # following "test" is one of our job, we can add multi-jobs for one workflow.
