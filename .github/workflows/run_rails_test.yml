@@ -26,6 +26,7 @@ jobs:
         uses: m4nu56/postgresql-action@1.0
         with:
           postgresql version: '11'
+          postgresql init scripts: test/sql
       - name: Check Postgres running
         run: |
           sleep 5
