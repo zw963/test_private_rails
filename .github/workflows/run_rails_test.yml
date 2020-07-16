@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install postgresSQL
-        uses: harmon758/postgresql-action@v1
+        uses: m4nu56/postgresql-action@1.0
         with:
           postgresql version: '11'
       - name: Check Postgres running
