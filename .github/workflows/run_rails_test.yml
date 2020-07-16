@@ -26,6 +26,10 @@ jobs:
         uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
+      - name: Check Postgres running
+        run: |
+          sleep 5
+          psql -U postgres -d postgres -h localhost -c "SELECT version()"
       - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing ruby
