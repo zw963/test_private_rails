@@ -27,7 +27,6 @@ jobs:
       - name: Installing ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.1
           bundler-cache: true
       - name: Installing dependencies
         run: bundle install
