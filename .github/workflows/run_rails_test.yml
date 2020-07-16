@@ -22,9 +22,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Installing Ruby
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - name: Checking out code
+        uses: actions/checkout@v2
+      - name: Installing ruby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.1
           bundler-cache: true
