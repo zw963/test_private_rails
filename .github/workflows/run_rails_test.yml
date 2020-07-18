@@ -32,14 +32,15 @@ jobs:
       - name: Check Postgres running
         run: |
           sleep 5
-          psql -U postgres -d postgres -h postgres -c "SELECT version()"
-      - name: Checking out code
-        uses: actions/checkout@v2
-      - name: Installing ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Installing dependencies
-        run: bundle install
-      - name: Run tests
-        run: bundle exec rails test -v
+          docker ps -a
+          # psql -U postgres -d postgres -h postgres -c "SELECT version()"
+      # - name: Checking out code
+      #   uses: actions/checkout@v2
+      # - name: Installing ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     bundler-cache: true
+      # - name: Installing dependencies
+      #   run: bundle install
+      # - name: Run tests
+      #   run: bundle exec rails test -v
