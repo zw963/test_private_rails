@@ -28,7 +28,7 @@ jobs:
           sudo systemctl start postgresql
       - name: Check Postgres running
         run: |
-          sleep 5
+          while ! sudo -u postgres pg_isready-q 2>/dev/null; do echo -n '.';  sleep 1; done
           sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'temp1234'"
           sudo -u postgres psql -c "create database test_private_rails_test;"
       - name: Checking out code
