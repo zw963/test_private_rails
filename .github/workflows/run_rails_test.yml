@@ -71,6 +71,8 @@ jobs:
           bundle install
           yarn
           DISABLE_SPRING=1 bundle exec rails db:migrate
+          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+          bin/dot_bar "git log --since=\"$(date +%Y-%m-%d) 00:00:00\" --pretty=format:\"\" --name-status | grep -e \"^[AMR]\" | sed -E \"s/^([A|M]\s*)(.+)$/\\2/g\" | sed -E \"s/^R.+\s+.+\s+(.+)$/\1/g\" | grep '.*\.\(rb\|rake\)$' |grep -v 'components/iot/lib/generators/iot/templates/configuration.rb' | uniq -u | sort" "ruby -c"
       - name: Run tests
         run: |
           bundle exec rails test -v
