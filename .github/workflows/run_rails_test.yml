@@ -24,9 +24,8 @@ jobs:
     steps:
       # - name: Install postgre
       #   run: |
-      #     sudo apt update
-      #     sudo apt install postgresql-11 postgresql-contrib
-      #     sudo systemctl start postgresql
+          # sudo apt update && sudo apt install postgresql-11
+          sudo systemctl start postgresql
       - name: Check Postgres running
         run: |
           sleep 5
