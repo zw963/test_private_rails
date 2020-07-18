@@ -34,22 +34,19 @@ jobs:
   test:
     runs-on: "ubuntu-18.04"
     steps:
-      - name: Cache multiple paths
+      - name: Cache node/yarn
         uses: actions/cache@v2
         with:
           path: |
             ~/.cache/yarn
-            ~/dynamodb_local_latest
             **/node_modules
-            /usr/share/elasticsearch
-            /etc/elasticsearch
-            /etc/default/elasticsearch
-            /usr/lib/tmpfiles.d/elasticsearch.conf
-            /usr/lib/systemd/system/elasticsearch.service
-            /usr/lib/sysctl.d/elasticsearch.conf
-            /etc/init.d/elasticsearch
-            /usr/share/lintian/overrides/elasticsearch
-          key: d48c13f2-c90b-11ea-a930-47cdf53adae9
+          key: yarn-${{ hashFiles('package.json') }}-${{ hashFiles('yarn.lock') }}
+      # - name: Cache dynamodb
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       ~/dynamodb_local_latest
+      #     key:
       - name: Installing postgre
         run: |
           # sudo apt update && sudo apt install postgresql-11
@@ -88,3 +85,5 @@ jobs:
       - name: Run tests
         run: |
           UPLOADER_STORAGE=file DISABLE_SPRING=1 bundle exec rails test -v
+          readlink -e ~/dynamodb_local_latest
+          echo ${{ GITHUB_WORKSPACE }}
