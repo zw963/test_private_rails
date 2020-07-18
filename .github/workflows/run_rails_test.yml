@@ -30,13 +30,13 @@ jobs:
       #     AIRHOST_DB_HOST: postgres
       - name: Install postgre
         run: |
+          sudo apt update
           sudo apt install postgresql postgresql-contrib
           sudo systemctl start postgresql
       - name: Check Postgres running
         run: |
           sleep 5
-          sudo systemctl status postgresql
-          psql -U postgres -h 127.0.0.1 -c "SELECT version()"
+          PGPASSWORD=postgres psql -U postgres -h 127.0.0.1 -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
       # - name: Installing ruby
