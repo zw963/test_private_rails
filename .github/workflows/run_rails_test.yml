@@ -36,7 +36,7 @@ jobs:
         run: |
           sleep 5
           sudo systemctl status postgresql
-          # psql -U postgres -d postgres -h postgres -c "SELECT version()"
+          psql -U postgres -h 127.0.0.1 -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
       # - name: Installing ruby
