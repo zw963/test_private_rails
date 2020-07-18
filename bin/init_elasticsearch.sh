@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 # if [ -f /usr/share/elasticsearch/bin/elasticsearch ]; then
 #     sudo chmod -R 2750 /etc/elasticsearch
 #     sudo chmod -R 0600 /etc/elasticsearch/*
