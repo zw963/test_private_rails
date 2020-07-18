@@ -77,11 +77,11 @@ jobs:
         run: |
           bundle exec rails test -v
           yarn cache dir
-     - name: Cache multiple paths
-       uses: actions/cache@v2
-       with:
-         path: |
-           ~/dynamodb_local_latest
-           **/node_modules
-         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+     # - name: Cache multiple paths
+     #   uses: actions/cache@v2
+     #   with:
+     #     path: |
+     #       ~/dynamodb_local_latest
+     #       **/node_modules
+     #     key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
