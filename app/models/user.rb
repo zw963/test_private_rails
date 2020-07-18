@@ -1,6 +1,6 @@
 # typed: strong
 class User < ApplicationRecord
-  searchkick searchable: [:name]
+  searchkick searchable: [:name], language: 'japanese'
 
   def search_data
     {

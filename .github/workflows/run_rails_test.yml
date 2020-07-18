@@ -46,13 +46,6 @@ jobs:
           sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
           sudo apt-get install -q -y --no-install-recommends elasticsearch
           sudo systemctl start elasticsearch
-      # - name: Install Elasticsearch
-      #   uses: getong/elasticsearch-action@v1.2
-      #   with:
-      #     elasticsearch version: '7.6.2'
-      #     host port: 9200
-      #     container port: 9200
-      #     discovery type: 'single-node'
       - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing ruby
