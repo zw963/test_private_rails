@@ -30,7 +30,7 @@ jobs:
       - name: Check Postgres running
         run: |
           sleep 5
-          sudo -u postgres psql -c "SELECT version()"
+          sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'temp1234'"
       - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing ruby
