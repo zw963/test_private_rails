@@ -17,6 +17,18 @@ on:
     branches:
       - master
 
+env:
+  RAILS_ENV: development
+  REDIS_HOST: '127.0.0.1'
+  REDIS_PORT: '6379'
+  S3_KEY: 'xxxxxxx'
+  S3_SECRET: 'xxxxxxx'
+  3_REGION: 'ap-northeast-1'
+  S3_HOST: 's3-ap-northeast-1.amazonaws.com'
+  S3_ENDPOINT: 'https://s3-ap-northeast-1.amazonaws.com'
+  S3_BUCKET_NAME: 'triosky-airhost'
+  UPLOADER_STORAGE: 'file'
+
 jobs:
   # following "test" is one of our job, we can add multi-jobs for one workflow.
   test:
