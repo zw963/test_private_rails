@@ -49,7 +49,7 @@ jobs:
             /usr/lib/sysctl.d/elasticsearch.conf
             /etc/init.d/elasticsearch
             /usr/share/lintian/overrides/elasticsearch
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: githash-${{ github.sha }}
       - name: Installing postgre
         run: |
           # sudo apt update && sudo apt install postgresql-11
@@ -59,7 +59,8 @@ jobs:
           while ! sudo -u postgres pg_isready -h 127.0.0.1 -q 2>/dev/null; do echo -n '.';  sleep 1; done
           sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'temp1234'"
           sudo -u postgres psql -c "create database test_private_rails_test;"
-      - name: Checking out code
+
+          - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing Elasticsearch
         run: |
