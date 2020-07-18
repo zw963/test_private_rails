@@ -28,14 +28,14 @@ jobs:
       #     postgresql version: '11'
       #   env:
       #     AIRHOST_DB_HOST: postgres
-      - name: Install postgre
-        run: |
-          sudo apt install postgresql postgresql-contrib
+      # - name: Install postgre
+      #   run: |
+      #     sudo apt install postgresql postgresql-contrib
+      #     sudo systemctl start postgres
       - name: Check Postgres running
         run: |
           sleep 5
-          hash=$(docker ps --format '{{.ID}}' |head -n1)
-          docker logs $hash
+          sudo -u postgres psql -c "SELECTversion();"
           # psql -U postgres -d postgres -h postgres -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
