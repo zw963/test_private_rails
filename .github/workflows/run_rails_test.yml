@@ -20,7 +20,7 @@ on:
 jobs:
   # following "test" is one of our job, we can add multi-jobs for one workflow.
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.0.4
     steps:
       - name: Install postgre
         run: |
@@ -41,6 +41,8 @@ jobs:
           sudo add-apt-repository "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
           sudo apt-get update
           sudo apt-get install -q -y --no-install-recommends openjdk-11-jre-headless
+          sudo apt-get install -q -y --no-instaell-recommends default-jre
+          java -version
           sudo apt-get install -q -y --no-install-recommends elasticsearch
           systemctl start elasticsearch
       # - name: Install Elasticsearch
