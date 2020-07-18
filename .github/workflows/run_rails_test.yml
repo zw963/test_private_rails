@@ -44,7 +44,7 @@ jobs:
           # sudo update-java-alternatives --list
           # /usr/lib/jvm/java-11-openjdk-amd64/bin/java
           sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
-          # sudo apt-get install -q -y --no-install-recommends elasticsearch
+          sudo apt-get install -q -y --no-install-recommends elasticsearch
           sudo systemctl start elasticsearch
       # - name: Install Elasticsearch
       #   uses: getong/elasticsearch-action@v1.2
