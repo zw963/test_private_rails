@@ -31,7 +31,8 @@ jobs:
       - name: Check Postgres running
         run: |
           sleep 5
-          docker logs $(docker ps --format '{{.ID}}' |head -n1)
+          hash=$(docker ps --format '{{.ID}}' |head -n1)
+          docker logs $hash
           # psql -U postgres -d postgres -h postgres -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
