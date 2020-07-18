@@ -41,8 +41,10 @@ jobs:
           sudo add-apt-repository "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
           sudo apt-get update
           sudo update-java-alternatives --list
-          sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-12-hotspot-amd64
-          sudo apt-get install -q -y --no-install-recommends elasticsearch
+          ls -l /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
+          # /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+          # sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-12-hotspot-amd64
+          # sudo apt-get install -q -y --no-install-recommends elasticsearch
           systemctl start elasticsearch
       # - name: Install Elasticsearch
       #   uses: getong/elasticsearch-action@v1.2
