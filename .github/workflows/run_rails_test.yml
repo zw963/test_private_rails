@@ -31,11 +31,11 @@ jobs:
       # - name: Install postgre
       #   run: |
       #     sudo apt install postgresql postgresql-contrib
-      #     sudo systemctl start postgres
+            # sudo systemctl status postgresql
       - name: Check Postgres running
         run: |
           sleep 5
-          sudo -u postgres psql -c "SELECTversion();"
+          sudo systemctl status postgresql
           # psql -U postgres -d postgres -h postgres -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
