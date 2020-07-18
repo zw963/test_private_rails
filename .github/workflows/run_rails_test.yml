@@ -34,7 +34,7 @@ jobs:
       - name: Install Elasticsearch
         uses: getong/elasticsearch-action@v1.2
         with:
-          elasticsearch version: '7.6.2'
+          elasticsearch version: '7.6.1'
       - name: Checking out code
         uses: actions/checkout@v2
       - name: Installing ruby
