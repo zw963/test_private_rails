@@ -61,3 +61,5 @@ gem 'pg'
 
 gem 'sorbet', :group => :development
 gem 'sorbet-runtime'
+
+gem 'searchkick'
