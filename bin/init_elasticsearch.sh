@@ -1,6 +1,8 @@
 #!/bin/bash
 
 if [ -f /usr/share/elasticsearch/bin/elasticsearch ]; then
+    sudo chmod -R 2750 /etc/elasticsearch
+    sudo chmod -R 0600 /etc/elasticsearch/*
     sudo useradd elasticsearch
     sudo mkdir -p /var/log/elasticsearch /var/lib/elasticsearch
     sudo chown -R elasticsearch:elasticsearch /var/log/elasticsearch /var/lib/elasticsearch
@@ -10,7 +12,8 @@ else
     sudo apt-get update
     sudo apt-get install -q -y --no-install-recommends elasticsearch
     sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
+    sudo chmod -R 2755 /etc/elasticsearch
+    sudo chmod -R 0644 /etc/elasticsearch/*
 fi
 
 sudo systemctl start elasticsearch
-sudo chmod 0644 /etc/elasticsearch
