@@ -53,7 +53,7 @@ jobs:
             /usr/lib/sysctl.d/elasticsearch.conf
             /etc/init.d/elasticsearch
             /usr/share/lintian/overrides/elasticsearch
-          key: elaticsearch-7.8.0
+          key: elaticsearch-7.8.2
       - name: Cache dynamodb
         uses: actions/cache@v2
         with:
