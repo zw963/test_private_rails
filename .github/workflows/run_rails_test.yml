@@ -66,10 +66,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Installing dependencies
-        run: bundle install
+      - name: Initialize prerequisites
+        run: |
+          bundle install
+          yarn
+          DISABLE_SPRING=1 bundle exec rails db:migrate
       - name: Run tests
         run: |
           bundle exec rails test -v
-          echo $RAILS_ENV
-          sudo sysctl -p
+          echo 'hello'
+          sudo sysctl -a
