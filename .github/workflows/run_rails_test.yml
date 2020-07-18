@@ -40,10 +40,10 @@ jobs:
           wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
           sudo add-apt-repository "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
           sudo apt-get update
-          ls -lh /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
+          # ls -lh /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
           # sudo update-java-alternatives --list
           # /usr/lib/jvm/java-11-openjdk-amd64/bin/java
-          # sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-12-hotspot-amd64
+          sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
           # sudo apt-get install -q -y --no-install-recommends elasticsearch
           systemctl start elasticsearch
       # - name: Install Elasticsearch
