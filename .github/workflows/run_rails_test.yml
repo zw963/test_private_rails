@@ -45,15 +45,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            /usr/share/elasticsearch
-            /etc/elasticsearch
-            /etc/default/elasticsearch
-            /usr/lib/tmpfiles.d/elasticsearch.conf
-            /usr/lib/systemd/system/elasticsearch.service
-            /usr/lib/sysctl.d/elasticsearch.conf
-            /etc/init.d/elasticsearch
-            /usr/share/lintian/overrides/elasticsearch
-          key: elaticsearch-7.8.2
+            ~/elasticsearch
+          key: elaticsearch-7.8.3
       - name: Cache dynamodb
         uses: actions/cache@v2
         with:
