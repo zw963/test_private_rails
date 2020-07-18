@@ -1,4 +1,10 @@
 # typed: strong
 class User < ApplicationRecord
-  searchkick
+  searchkick searchable: [:name]
+
+  def search_data
+    {
+      name: name
+    }
+  end
 end
