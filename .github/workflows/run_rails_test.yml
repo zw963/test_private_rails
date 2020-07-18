@@ -22,12 +22,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install postgresSQL
-        uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '11'
-        env:
-          AIRHOST_DB_HOST: postgres
+      # - name: Install postgresSQL
+      #   uses: harmon758/postgresql-action@v1
+      #   with:
+      #     postgresql version: '11'
+      #   env:
+      #     AIRHOST_DB_HOST: postgres
       - name: Install postgre
         run: |
           sudo apt update
@@ -36,7 +36,7 @@ jobs:
       - name: Check Postgres running
         run: |
           sleep 5
-          psql -U postgres -h 127.0.0.1 -c "SELECT version()"
+          PGPASSWORD=postgres psql -U postgres -h 127.0.0.1 -c "SELECT version()"
       # - name: Checking out code
       #   uses: actions/checkout@v2
       # - name: Installing ruby
