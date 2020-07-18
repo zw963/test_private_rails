@@ -86,4 +86,4 @@ jobs:
         run: |
           UPLOADER_STORAGE=file DISABLE_SPRING=1 bundle exec rails test -v
           readlink -e ~/dynamodb_local_latest
-          # echo $GITHUB_WORKSPACE
+          echo $GITHUB_WORKSPACE
