@@ -19,6 +19,6 @@ sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
 #     sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
 # fi
 
-sudo chown -R elasticsearch:elasticsearch /etc/elasticsearch
+sudo chmod 0644 /etc/elasticsearch
 
 sudo systemctl start elasticsearch
