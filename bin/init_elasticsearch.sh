@@ -22,7 +22,7 @@ set -x
 
 if [ ! -d ~/elasticsearch ]; then
     mkdir ~/elasticsearch
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.8.0-amd64.deb -O ~/elasticsearch
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.8.0-amd64.deb -O ~/elasticsearch/elasticsearch-7.8.0-amd64.deb
 fi
 
 cd ~/elasticsearch
