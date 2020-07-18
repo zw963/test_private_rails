@@ -49,7 +49,7 @@ jobs:
             /usr/lib/sysctl.d/elasticsearch.conf
             /etc/init.d/elasticsearch
             /usr/share/lintian/overrides/elasticsearch
-          key: 2b44930a-c90b-11ea-90fc-d3ef6303f7a6
+          key: d48c13f2-c90b-11ea-a930-47cdf53adae9
       - name: Installing postgre
         run: |
           # sudo apt update && sudo apt install postgresql-11
