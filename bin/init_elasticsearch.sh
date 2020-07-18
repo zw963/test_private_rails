@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 if [ -f /usr/share/elasticsearch/bin/elasticsearch ]; then
     sudo chmod -R 2750 /etc/elasticsearch
     sudo chmod -R 0600 /etc/elasticsearch/*
@@ -16,6 +17,7 @@ else
     sudo chmod -R 0644 /etc/elasticsearch/*
     sudo chmod 0644 /etc/default/elasticsearch
     sudo chmod 0644 /etc/init.d/elasticsearch
+
 fi
 
 sudo systemctl start elasticsearch
