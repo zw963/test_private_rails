@@ -46,7 +46,7 @@ jobs:
         with:
           path: |
             ~/elasticsearch
-          key: elaticsearch-7.8.3
+          key: elaticsearch-7.8.4
       - name: Cache dynamodb
         uses: actions/cache@v2
         with:

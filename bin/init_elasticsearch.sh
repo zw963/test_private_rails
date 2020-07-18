@@ -27,4 +27,5 @@ fi
 
 cd ~/elasticsearch
 sudo dpkg -i ./elasticsearch-7.8.0-amd64.deb
+sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
 sudo systemctl start elasticsearch
