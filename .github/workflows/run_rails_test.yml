@@ -22,12 +22,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install postgresSQL
-        uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '11'
-        env:
-          AIRHOST_DB_HOST: postgres
+      # - name: Install postgresSQL
+      #   uses: harmon758/postgresql-action@v1
+      #   with:
+      #     postgresql version: '11'
+      #   env:
+      #     AIRHOST_DB_HOST: postgres
+      - name: Install postgre
+        run: |
+          sudo apt install postgresql postgresql-contrib
       - name: Check Postgres running
         run: |
           sleep 5
