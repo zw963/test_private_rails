@@ -76,5 +76,5 @@ jobs:
       - name: Run tests
         run: |
           bundle exec rails test -v
-          echo \$RAILS_ENV
-          sudo sysctl -a
+          echo $RAILS_ENV
+
