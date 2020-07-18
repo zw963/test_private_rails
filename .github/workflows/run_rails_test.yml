@@ -22,8 +22,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # - name: Install postgre
-      #   run: |
+      - name: Install postgre
+        run: |
           # sudo apt update && sudo apt install postgresql-11
           sudo systemctl start postgresql
       - name: Check Postgres running
