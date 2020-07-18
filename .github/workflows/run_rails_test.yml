@@ -41,8 +41,8 @@ jobs:
           sudo add-apt-repository "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
           sudo apt-get update
           sudo apt-get install -q -y --no-install-recommends openjdk-11-jre-headless
-          sudo apt-get install -q -y --no-install-recommends default-jre
-          java -version
+          # sudo apt-get install -q -y --no-install-recommends default-jre
+          sudo update-java-alternatives --list
           sudo apt-get install -q -y --no-install-recommends elasticsearch
           systemctl start elasticsearch
       # - name: Install Elasticsearch
