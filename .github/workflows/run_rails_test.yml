@@ -18,7 +18,7 @@ on:
       - master
 
 env:
-  RAILS_ENV: development
+  RAILS_ENV: test
   REDIS_HOST: '127.0.0.1'
   REDIS_PORT: '6379'
   S3_KEY: 'xxxxxxx'
@@ -71,3 +71,5 @@ jobs:
       - name: Run tests
         run: |
           bundle exec rails test -v
+          echo $RAILS_ENV
+          sudo sysctl -p
