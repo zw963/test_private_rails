@@ -81,6 +81,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
+            ~/.cache/yarn
             ~/dynamodb_local_latest
             **/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
