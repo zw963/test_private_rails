@@ -12,4 +12,7 @@ else
     sudo chown elasticsearch:elasticsearch /var/log/elasticsearch /var/lib/elasticsearch
 fi
 
+
+sudo chown elasticsearch:elasticsearch /etc/elasticsearch
+
 sudo systemctl start elasticsearch
