@@ -1,3 +1,5 @@
+![badge](https://github.com/zw963/test_private_rails/workflows/run%20rails%20and%20components%20specs/badge.svg)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
