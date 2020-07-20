@@ -1,0 +1,96 @@
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: run rails and components specs
+
+on:
+  push:
+    branches:
+      - master
+      - production
+  pull_request:
+    branches:
+      - master
+
+env:
+  RAILS_ENV: test
+  REDIS_HOST: '127.0.0.1'
+  REDIS_PORT: '6379'
+  S3_KEY: 'xxxxxxx'
+  S3_SECRET: 'xxxxxxx'
+  3_REGION: 'ap-northeast-1'
+  S3_HOST: 's3-ap-northeast-1.amazonaws.com'
+  S3_ENDPOINT: 'https://s3-ap-northeast-1.amazonaws.com'
+  S3_BUCKET_NAME: 'triosky-airhost'
+  UPLOADER_STORAGE: 'file'
+
+jobs:
+  # following "test" is one of our job, we can add multi-jobs for one workflow.
+  test:
+    runs-on: "ubuntu-18.04"
+    steps:
+      - name: Set WIP label
+        uses: actions/labeler@v2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Cache node/yarn
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/yarn
+            **/node_modules
+          key: yarn-${{ hashFiles('package.json') }}-${{ hashFiles('yarn.lock') }}
+      - name: Cache elasticsearch
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/elasticsearch
+          key: elaticsearch-7.8.4
+      - name: Cache dynamodb
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dynamodb_local_latest
+          key: dynamodb-1.13.1
+      - name: Initializing postgre
+        run: |
+          # sudo apt update && sudo apt install postgresql-11
+          sudo systemctl start postgresql
+          while ! sudo -u postgres pg_isready -h 127.0.0.1 -q 2>/dev/null; do echo -n '.';  sleep 1; done
+          sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'temp1234'"
+          sudo -u postgres psql -c "create database test_private_rails_test;"
+      - name: Checking out code
+        uses: actions/checkout@v2
+      - name: Initializing Elasticsearch
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+          # sudo update-java-alternatives --list
+          sudo update-java-alternatives --set /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
+          ./bin/init_elasticsearch.sh
+      - name: Initializing Dynamodb
+        run: |
+          ./bin/init_dynamoDB.sh
+      - name: Installing ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Initialize prerequisites
+        run: |
+          bundle install
+          yarn
+          DISABLE_SPRING=1 bundle exec rails db:migrate
+          DISABLE_SPRING=1 bundle exec rails r 'Webdrivers::Chromedriver.update'
+          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+          bin/dot_bar "git log --since=\"$(date +%Y-%m-%d) 00:00:00\" --pretty=format:\"\" --name-status | grep -e \"^[AMR]\" | sed -E \"s/^([A|M]\s*)(.+)$/\\2/g\" | sed -E \"s/^R.+\s+.+\s+(.+)$/\1/g\" | grep '.*\.\(rb\|rake\)$' |grep -v 'components/iot/lib/generators/iot/templates/configuration.rb' | uniq -u | sort" "ruby -c"
+      - name: Run tests
+        run: |
+          UPLOADER_STORAGE=file DISABLE_SPRING=1 bundle exec rails test -v
+          readlink -e ~/dynamodb_local_latest

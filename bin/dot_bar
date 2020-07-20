@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# dot_bar 'find $(pwd) -name "*.rb"' 'ruby -c'
+
+EXIT=0
+
+for file in $(eval "$1")
+do
+    OUTPUT=$(eval $2 $file 2>&1)
+
+    if [[ "$OUTPUT" =~ "warning" ]]; then
+        WARNINGS="$WARNINGS$OUTPUT\n"
+        printf '[1m[33m.[0m'
+    elif [[ "$OUTPUT" =~ "error" ]]; then
+        ERRORS="$ERRORS\n$OUTPUT"
+        printf '[1m[31mx[0m'
+        EXIT=1
+    else
+        printf '[1m[32m.[0m'
+    fi
+done
+
+if [ "$EXIT" != 0 ]; then
+    echo -e "\nWarnings:\n"
+    echo -e "$WARNINGS\n"
+    echo -e "-------------------------------------------------"
+    echo -e  "Errors:"
+    echo -e "$ERRORS\n"
+else
+    echo -e "\nok"
+fi
+
+exit $EXIT
