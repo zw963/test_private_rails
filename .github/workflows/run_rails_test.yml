@@ -34,6 +34,10 @@ jobs:
   test:
     runs-on: "ubuntu-18.04"
     steps:
+      - name: Set WIP label
+        uses: actions/labeler@v2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Cache node/yarn
         uses: actions/cache@v2
         with:
